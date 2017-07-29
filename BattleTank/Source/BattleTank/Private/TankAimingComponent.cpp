@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "TankAimingComponent.h"
+#include "GameFramework/Actor.h"
 
 
 // Sets default values for this component's properties
@@ -33,9 +34,17 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 }
 
 
+void UTankAimingComponent::SetBarrelReference(UStaticMeshComponent* BarrelToSet)
+{
+	
+	Barrel = BarrelToSet;
+
+}
+
 void UTankAimingComponent::AimAt(FVector HitLocation)
 {
 	auto OurTankName = GetName();
-	UE_LOG(LogTemp, Warning, TEXT("%s aiming at %s"), *GetOwner()->GetName(), *HitLocation.ToString());
+	auto BarrelLocation = Barrel->GetComponentLocation();
+	UE_LOG(LogTemp, Warning, TEXT("%s aiming at %s from %s"), *GetOwner()->GetName(), *HitLocation.ToString(), *BarrelLocation.ToString());
 }
 
