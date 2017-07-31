@@ -6,19 +6,33 @@
 
 void UTankMovementComponent::IntendMoveForward(float Throw)
 {
+	if (!LeftTrack || !RightTrack) return;
 
 	UE_LOG(LogTemp, Warning, TEXT("%f: Intend move forward throw: %f"), GetWorld()->GetTimeSeconds(), Throw);
 	
 	LeftTrack->SetThrottle(Throw);
 	RightTrack->SetThrottle(Throw);
 
+	// TODO prevent double speed due to double input
+}
+
+void UTankMovementComponent::IntendTurnRight(float Throw)
+{
+	if (!LeftTrack || !RightTrack) return;
+
+	UE_LOG(LogTemp, Warning, TEXT("%f: Intend move forward throw: %f"), GetWorld()->GetTimeSeconds(), Throw);
+
+	LeftTrack->SetThrottle(Throw);
+	RightTrack->SetThrottle(-Throw);
+
+	// TODO prevent double speed due to double input
+
 }
 
 void UTankMovementComponent::Initialise(UTankTrack * LeftTrackToSet, UTankTrack * RightTrackToSet)
 {
-	if (!LeftTrackToSet || !RightTrackToSet) return;
 	LeftTrack = LeftTrackToSet;
 	RightTrack = RightTrackToSet;
 
-	// TODO prevent double speed due to double input
+	
 }
