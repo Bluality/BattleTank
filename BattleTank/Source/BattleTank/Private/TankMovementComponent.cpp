@@ -7,8 +7,6 @@
 void UTankMovementComponent::IntendMoveForward(float Throw)
 {
 	if (!LeftTrack || !RightTrack) return;
-
-	UE_LOG(LogTemp, Warning, TEXT("%f: Intend move forward throw: %f"), GetWorld()->GetTimeSeconds(), Throw);
 	
 	LeftTrack->SetThrottle(Throw);
 	RightTrack->SetThrottle(Throw);
@@ -19,8 +17,6 @@ void UTankMovementComponent::IntendMoveForward(float Throw)
 void UTankMovementComponent::IntendTurnRight(float Throw)
 {
 	if (!LeftTrack || !RightTrack) return;
-
-	UE_LOG(LogTemp, Warning, TEXT("%f: Intend move forward throw: %f"), GetWorld()->GetTimeSeconds(), Throw);
 
 	LeftTrack->SetThrottle(Throw);
 	RightTrack->SetThrottle(-Throw);
@@ -35,4 +31,11 @@ void UTankMovementComponent::Initialise(UTankTrack * LeftTrackToSet, UTankTrack 
 	RightTrack = RightTrackToSet;
 
 	
+}
+
+void UTankMovementComponent::RequestDirectMove(const FVector & MoveVelocity, bool bForceMaxSpeed)
+{
+
+	UE_LOG(LogTemp, Warning, TEXT("%f: %s moving towards %s"), GetWorld()->GetTimeSeconds(),*GetOwner()->GetName(), *MoveVelocity.ToString());
+
 }
