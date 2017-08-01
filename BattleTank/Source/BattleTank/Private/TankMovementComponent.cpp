@@ -35,7 +35,13 @@ void UTankMovementComponent::Initialise(UTankTrack * LeftTrackToSet, UTankTrack 
 
 void UTankMovementComponent::RequestDirectMove(const FVector & MoveVelocity, bool bForceMaxSpeed)
 {
+	// No need to call super, we are replacing all
 
-	UE_LOG(LogTemp, Warning, TEXT("%f: %s moving towards %s"), GetWorld()->GetTimeSeconds(),*GetOwner()->GetName(), *MoveVelocity.ToString());
+	auto TankForward = GetOwner()->GetActorForwardVector().GetSafeNormal();
+	auto AIForwardIntention = MoveVelocity.GetSafeNormal();
+	auto ForwardThrow = FVector::DotProduct(AIForwardIntention, TankForward);
+	IntendMoveForward(ForwardThrow);
+
+	//UE_LOG(LogTemp, Warning, TEXT("%f: %s moving towards %s"), GetWorld()->GetTimeSeconds(),*GetOwner()->GetName(), *MoveVelocity.GetSafeNormal().ToString());
 
 }
