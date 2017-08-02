@@ -1,10 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "TankAIController.h"
-#include "Engine/World.h"
+
 #include "GameFramework/PlayerController.h"
-#include "TankAimingComponent.h"
 #include "GameFramework/Pawn.h"
+#include "Engine/World.h"
+
+#include "TankAimingComponent.h"
+
 // Depends on movement component via pathfinding system
 
 void ATankAIController::BeginPlay()
@@ -28,5 +31,5 @@ void ATankAIController::Tick(float DeltaTime)
 	AimingComponent->AimAt(PlayerTank->GetActorLocation());
 
 	// Fire if ready
-	//ControlledTank->Fire();
+	AimingComponent->Fire();
 }
