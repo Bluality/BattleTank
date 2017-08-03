@@ -67,7 +67,7 @@ bool ATankPlayerController::GetLookVectorHitLocation(FVector LookDirection, FVec
 			StartLocation,
 			EndLocation,
 			ECollisionChannel::ECC_Visibility,
-			FCollisionQueryParams(FName(""), false, GetControlledPawn())
+			FCollisionQueryParams(FName(""), false, GetPawn())
 	))
 	{
 		// Hit succeeds
