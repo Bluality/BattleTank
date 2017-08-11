@@ -36,9 +36,13 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UParticleSystemComponent* LaunchBlast = nullptr;
 
-public:	
-	
+	UPROPERTY(VisibleAnywhere, Category = "Components")
+	UParticleSystemComponent* ImpactBlast = nullptr;
 
+private:	
+	
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 	
 
 	
